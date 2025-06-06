@@ -3,7 +3,13 @@
 import React, { useState } from 'react';
 
 export default function SignUp() {
-  const [form, setForm] = useState({ username: '', email: '', password: '' });
+  const [form, setForm] = useState({
+    username: '',
+    email: '',
+    password: '',
+    full_name: '',
+    phone: ''
+  });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
@@ -53,6 +59,20 @@ export default function SignUp() {
             type="password"
             name="password"
             placeholder="Password"
+            onChange={handleChange}
+            className="w-full p-2 border"
+          />
+          <input
+            type="text"
+            name="full_name"
+            placeholder="Full Name"
+            onChange={handleChange}
+            className="w-full p-2 border"
+          />
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone Number"
             onChange={handleChange}
             className="w-full p-2 border"
           />

@@ -1,0 +1,7 @@
+
+
+These are the steps which I have followed to create "Project Alpha: The Application metrics project"
+
+1. create the Next.js frontend in the fronted folder.
+2. create the django backend in the backend folder
+3. Install mongodb database
