@@ -10,12 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
-
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(dotenv_path=BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -112,6 +115,15 @@ DATABASES = {
     }
 }
 
+import os
+
+INFLUXDB = {
+    "INFLUXDB_URL": os.getenv("INFLUXDB_URL", "https://us-east-1-1.aws.cloud2.influxdata.com"),
+    "INFLUXDB_TOKEN": os.getenv("INFLUXDB_TOKEN", ""),
+    "INFLUXDB_ORG": os.getenv("INFLUXDB_ORG", ""),
+    "INFLUXDB_HOST": os.getenv("INFLUXDB_HOST"),
+    "BUCKET": os.getenv("INFLUXDB_BUCKET", ""),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

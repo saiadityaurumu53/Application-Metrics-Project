@@ -3,11 +3,12 @@ from datetime import datetime, timedelta
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from servermetrics.InfluxDBClient import write_system_load_data, query_cpu_utilization_sql
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def get_system_metrics(request):
-    # Generate 30 days of fake load data
+    # Generate 30 days of random load data
     start_date = datetime.today()
     data = []
     for i in range(30):
@@ -29,3 +30,21 @@ def get_system_metrics(request):
         },
         "data": data
     })
+
+
+
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def write_systemmetrics_influx_data_view(request):
+    result = write_system_load_data()
+    return Response({"message": result})
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_cpu_metrics_sql(request):
+    df = query_cpu_utilization_sql()
+    data = df.to_dict(orient="records")
+    return Response(data)

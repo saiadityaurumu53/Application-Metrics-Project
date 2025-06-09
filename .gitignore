@@ -1,0 +1,17 @@
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+
+# Ignore SQLite DB if desired
+*.sqlite3
+
+# Ignore environment files
+.env
+
+# Ignore node_modules and build files
+frontend/my-app/node_modules/
+frontend/my-app/.next/
+
+# Ignore system files
+.DS_Store
+Thumbs.db

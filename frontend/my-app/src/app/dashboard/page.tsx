@@ -45,28 +45,32 @@ export default function Dashboard() {
   }
 
   return (
-  <main className="min-h-screen p-6 bg-gray-50">
-    <h1 className="text-3xl font-bold mb-4 text-center">Welcome, {data?.user?.username} 👋</h1>
+  <div className="min-h-screen p-6 bg-gray-50">
+      <h1 className="text-3xl font-bold mb-4 text-center">
+        Welcome, {data?.user?.username} 👋
+      </h1>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {/* Section 1 */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <h2 className="text-xl font-semibold mb-2">Your Profile</h2>
-        <p><strong>Username:</strong> {data?.user?.username}</p>
-        <p><strong>Email:</strong> {data?.user?.email}</p>
-        <p><strong>Staff:</strong> {data?.user?.is_staff ? 'Yes' : 'No'}</p>
-      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Section 1 */}
+        <div className="bg-white rounded-lg shadow p-4">
+          <h2 className="text-xl font-semibold mb-2">Your Profile</h2>
+          <p>
+            <strong>Username:</strong> {data?.user?.username}
+          </p>
+          <p>
+            <strong>Email:</strong> {data?.user?.email}
+          </p>
+          <p>
+            <strong>Staff:</strong> {data?.user?.is_staff ? "Yes" : "No"}
+          </p>
+        </div>
 
-      {/* Section 2 */}
-      <div className="bg-white rounded-lg shadow p-4">
-        <h2 className="text-xl font-semibold mb-2">Protected Message</h2>
-        <p>{data?.message}</p>
+        {/* Section 2 */}
+        <div className="bg-white rounded-lg shadow p-4">
+          <h2 className="text-xl font-semibold mb-2">Protected Message</h2>
+          <p>{data?.message}</p>
+        </div>
       </div>
     </div>
-
-    <div className="text-center mt-8">
-      <LogoutButton />
-    </div>
-  </main>
 );
 }

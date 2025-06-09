@@ -5,3 +5,6 @@ dnspython
 influxdb-client
 pymongo
 python-dotenv
+influxdb3-python
+pandas
+certifi
