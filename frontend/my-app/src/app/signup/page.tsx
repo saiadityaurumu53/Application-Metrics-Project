@@ -1,6 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 
 export default function SignUp() {
   const [form, setForm] = useState({
@@ -8,7 +12,7 @@ export default function SignUp() {
     email: '',
     password: '',
     full_name: '',
-    phone: ''
+    phone: '',
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -35,56 +39,81 @@ export default function SignUp() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-3xl font-semibold mb-6">Sign Up</h2>
-      {success ? (
-        <p className="text-green-600">Account created! You can now sign in.</p>
-      ) : (
-        <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            onChange={handleChange}
-            className="w-full p-2 border"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleChange}
-            className="w-full p-2 border"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleChange}
-            className="w-full p-2 border"
-          />
-          <input
-            type="text"
-            name="full_name"
-            placeholder="Full Name"
-            onChange={handleChange}
-            className="w-full p-2 border"
-          />
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone Number"
-            onChange={handleChange}
-            className="w-full p-2 border"
-          />
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded"
-          >
-            Sign Up
-          </button>
-          {error && <p className="text-red-600">{error}</p>}
-        </form>
-      )}
+    <main className="flex items-center justify-center min-h-screen bg-gray-50">
+      <Card className="w-full max-w-md shadow-lg">
+        <CardHeader>
+          <CardTitle className="text-2xl text-center">Sign Up</CardTitle>
+        </CardHeader>
+
+        {success ? (
+          <CardContent>
+            <p className="text-green-600 text-center">🎉 Account created! You can now sign in.</p>
+          </CardContent>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <CardContent className="space-y-4">
+              <div className="space-y-1">
+                <Label htmlFor="username">Username</Label>
+                <Input
+                  id="username"
+                  name="username"
+                  placeholder="Enter your username"
+                  value={form.username}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={form.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={form.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="full_name">Full Name</Label>
+                <Input
+                  id="full_name"
+                  name="full_name"
+                  placeholder="Enter your full name"
+                  value={form.full_name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="phone">Phone Number</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  placeholder="Enter your phone number"
+                  value={form.phone}
+                  onChange={handleChange}
+                />
+              </div>
+              {error && <p className="text-sm text-red-600">{error}</p>}
+            </CardContent>
+            <CardFooter className="mt-4">
+              <Button type="submit" className="w-full">
+                Sign Up
+              </Button>
+            </CardFooter>
+          </form>
+        )}
+      </Card>
     </main>
   );
 }

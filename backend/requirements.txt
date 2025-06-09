@@ -8,3 +8,5 @@ python-dotenv
 influxdb3-python
 pandas
 certifi
+openai 
+groq

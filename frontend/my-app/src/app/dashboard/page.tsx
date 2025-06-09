@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import LogoutButton from '@/components/LogoutButton';
 
 export default function Dashboard() {
@@ -45,32 +46,74 @@ export default function Dashboard() {
   }
 
   return (
-  <div className="min-h-screen p-6 bg-gray-50">
-      <h1 className="text-3xl font-bold mb-4 text-center">
+    <div className="min-h-screen p-6 bg-gray-50">
+      <h1 className="text-3xl font-bold mb-6 text-center">
         Welcome, {data?.user?.username} 👋
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Section 1 */}
-        <div className="bg-white rounded-lg shadow p-4">
-          <h2 className="text-xl font-semibold mb-2">Your Profile</h2>
-          <p>
-            <strong>Username:</strong> {data?.user?.username}
-          </p>
-          <p>
-            <strong>Email:</strong> {data?.user?.email}
-          </p>
-          <p>
-            <strong>Staff:</strong> {data?.user?.is_staff ? "Yes" : "No"}
-          </p>
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        {/* Section 2 */}
-        <div className="bg-white rounded-lg shadow p-4">
-          <h2 className="text-xl font-semibold mb-2">Protected Message</h2>
-          <p>{data?.message}</p>
-        </div>
+        {/* Profile Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Your Profile</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <p>
+              <strong>Username:</strong> {data?.user?.username}
+            </p>
+            <p>
+              <strong>Email:</strong> {data?.user?.email}
+            </p>
+            <p>
+              <strong>Staff:</strong> {data?.user?.is_staff ? 'Yes' : 'No'}
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Protected Message Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Protected Message</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>{data?.message}</p>
+          </CardContent>
+        </Card>
+
+        {/* Project Description Card */}
+        {/* Project Description Card */}
+    <Card className="lg:col-span-3">
+      <CardHeader>
+        <CardTitle>About This Project</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-muted-foreground space-y-4">
+            <p>
+              This project is a full-stack, GitHub-style monitoring dashboard that visualizes system metrics like CPU load using interactive charts. It integrates InfluxDB Cloud to ingest real-time data from your machine via a Telegraf agent.
+            </p>
+            <p>
+              The backend is powered by Django REST Framework with secure JWT-based authentication. The frontend is built with Next.js and styled using TailwindCSS and shadcn/ui components for a polished, developer-friendly UI.
+            </p>
+            <p>
+              One key feature is AI-generated system insights: metrics are passed to Groq’s LLaMA model, which returns natural language summaries directly in the dashboard.
+            </p>
+            <p>
+              <strong>Upcoming Features:</strong>
+              <ul className="list-disc list-inside mt-2">
+                <li>Docker container metrics and health monitoring</li>
+                <li>Kubernetes cluster integration</li>
+                <li>Dark mode support</li>
+                <li>AI-driven alerts and recommendations</li>
+              </ul>
+            </p>
+            <p>
+              This project is actively maintained as part of an InfluxDB Hackathon initiative and aims to provide a one-stop solution for cloud-native infrastructure monitoring.
+            </p>
+          </CardContent>
+    </Card>
+
+
       </div>
     </div>
-);
+  );
 }

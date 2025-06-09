@@ -202,9 +202,9 @@ export function ChartAreaInteractive({ data }: Props) {
   <Card className="pt-0">
     <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
       <div className="grid flex-1 gap-1">
-        <CardTitle>Area Chart - Interactive</CardTitle>
+        <CardTitle>System CPU metrics</CardTitle>
         <CardDescription>
-          Showing total visitors for the last {timeRange === "90d" ? "3 months" : timeRange === "30d" ? "30 days" : "7 days"}
+          Showing Aditya-CPU load metrics
         </CardDescription>
       </div>
       <Select value={timeRange} onValueChange={setTimeRange}>

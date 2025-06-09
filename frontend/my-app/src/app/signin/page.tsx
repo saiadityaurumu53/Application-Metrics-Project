@@ -2,6 +2,10 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 
 export default function SignIn() {
   const router = useRouter();
@@ -25,38 +29,49 @@ export default function SignIn() {
       localStorage.setItem('refreshToken', data.refresh);
       alert('✅ Logged in successfully!');
       router.push('/dashboard');
-      // You can navigate to a dashboard here
     } else {
       setError(data.detail || 'Login failed');
     }
   };
 
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-3xl font-semibold mb-6">Sign In</h2>
-      <form onSubmit={handleSignIn} className="w-full max-w-sm space-y-4">
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-2 border"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 border"
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded"
-        >
+    <main className="flex items-center justify-center min-h-screen bg-gray-50">
+  <Card className="w-full max-w-md shadow-lg">
+    <CardHeader>
+      <CardTitle className="text-2xl text-center">Sign In</CardTitle>
+    </CardHeader>
+    <form onSubmit={handleSignIn}>
+      <CardContent className="space-y-6"> {/* Increased spacing between sections */}
+        <div className="space-y-1">
+          <Label htmlFor="username">Username</Label>
+          <Input
+            id="username"
+            type="text"
+            placeholder="Enter your username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="space-y-1">
+          <Label htmlFor="password">Password</Label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        {error && <p className="text-sm text-red-600">{error}</p>}
+      </CardContent>
+      <CardFooter  className="mt-4">
+        <Button type="submit" className="w-full">
           Sign In
-        </button>
-        {error && <p className="text-red-600">{error}</p>}
-      </form>
-    </main>
+        </Button>
+      </CardFooter>
+    </form>
+  </Card>
+</main>
+
   );
 }

@@ -157,6 +157,4 @@ MIT License – Use and modify freely. Contributions welcome!
 
 ---
 
-## 💡 Tip
 
-Extend Telegraf by enabling other input plugins like `docker`, `disk`, `net`, or even custom `exec` scripts for app-level telemetry.

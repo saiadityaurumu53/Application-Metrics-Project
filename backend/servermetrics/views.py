@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from servermetrics.InfluxDBClient import write_system_load_data, query_cpu_utilization_sql
+from servermetrics.generateAISummary import generate_ai_summary_groq
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
@@ -19,6 +20,7 @@ def get_system_metrics(request):
 
     # Reverse to have chronological order
     data.reverse()
+    note = generate_ai_summary_groq(data)
 
     return Response({
         "message": f"📊 Hello {request.user.username}, here is your live load data.",
@@ -28,7 +30,8 @@ def get_system_metrics(request):
             "email": request.user.email,
             "is_staff": request.user.is_staff,
         },
-        "data": data
+        "data": data,
+        "note": note
     })
 
 

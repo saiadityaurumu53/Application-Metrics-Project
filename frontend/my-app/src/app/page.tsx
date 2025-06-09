@@ -1,13 +1,47 @@
-// Landing page
+'use client';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
 export default function LandingPage() {
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold mb-4">Welcome to Application Metrics!</h1>
-      <p className="mb-8">Monitor your infrastructure easily using InfluxDB.</p>
-      <div className="space-x-4">
-        <a href="/signin" className="px-4 py-2 bg-blue-600 text-white rounded">Sign In</a>
-        <a href="/signup" className="px-4 py-2 border border-blue-600 text-blue-600 rounded">Sign Up</a>
-      </div>
+    <main className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+      <Card className="w-full max-w-3xl shadow-xl p-6">
+        <CardHeader className="text-center space-y-2">
+          <CardTitle className="text-4xl font-extrabold">Application Metrics Dashboard</CardTitle>
+          <p className="text-muted-foreground text-lg">
+            Monitor your infrastructure using InfluxDB + AI-powered summaries.
+          </p>
+        </CardHeader>
+
+        <CardContent className="space-y-6">
+          {/* Technology Icons Section */}
+          <div className="flex justify-center gap-10 items-center py-4 flex-wrap">
+            <div className="flex flex-col items-center space-y-2">
+              <img src="/cpu-icon.png" alt="CPU" className="w-12 h-12" />
+              <p className="text-sm text-gray-600">CPU Metrics</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <img src="/docker-icon.png" alt="Docker" className="w-12 h-12" />
+              <p className="text-sm text-gray-600">Docker Containers</p>
+            </div>
+            <div className="flex flex-col items-center space-y-2">
+              <img src="/k8s-icon.png" alt="Kubernetes" className="w-12 h-12" />
+              <p className="text-sm text-gray-600">Kubernetes Clusters</p>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="flex justify-center gap-6">
+            <Button size="lg" asChild>
+              <a href="/signin">Sign In</a>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <a href="/signup">Sign Up</a>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </main>
   );
 }
