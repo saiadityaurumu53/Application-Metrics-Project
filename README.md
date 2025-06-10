@@ -128,7 +128,7 @@ npm run dev
 
 ## 🔐 API Endpoints
 
-Your current Django `urlpatterns`:
+My current Django `urlpatterns`:
 
 ```python
 urlpatterns = [
