@@ -1,11 +1,17 @@
 import os, time
 from influxdb_client_3 import InfluxDBClient3, Point
 
+
+from datetime import datetime, timezone
+
 # token = os.environ.get("INFLUXDB_TOKEN")
 # token = "4TsNciUc5b5tC_o1lji_dRHcKyVMIh_-Ic5iA4mNftLVuvYgLzMpmTOofekDvqNihgY8AG4CWq-woNkPSgThGQ=="
 token = "fdR8YWinGvf5ENoX-YRzAs91XWqctqgXjUEDugrZvrg1Y47ZzL9Hznv1e4olp9BrI5pPGZ5xTAVFnwxrD_Y8gQ=="
 org = "InfluxDB Hackathon"
 host = "https://us-east-1-1.aws.cloud2.influxdata.com"
+
+datetime.now(timezone.utc)
+
 
 def get_influxdb_client():
     client = InfluxDBClient3(host=host, token=token, org=org)
@@ -113,9 +119,53 @@ def query_cpu_utilization_sql():
 
 
 
+
+def write_system_load_to_influxdb():
+    host = "http://localhost:8181"
+    token = "apiv3_WjoJ989Hy6NDrLIfv_vq1YPs03-gOyTS8igIwsFmpUAFFsj4xSb_mXlKGvd9d-5Rs0fbUvm1Fn6wFCglnx5frA"
+    org = "my-org"           # Use any string (ignored in local mode)
+    database = "localdb"     # You can use or create this name
+
+    try:
+        client = InfluxDBClient3(
+            host=host,
+            token=token,
+            org=org,
+            database=database
+        )
+
+        point = Point("system_load") \
+            .tag("host", "aditya-laptop") \
+            .field("load1", round(random.uniform(0.5, 1.5), 2)) \
+            .field("load5", round(random.uniform(1.0, 2.5), 2)) \
+            .time(datetime.now(timezone.utc))
+
+        client.write(point)
+        print("✅ Data written to InfluxDB 3 Enterprise!")
+
+    except Exception as e:
+        print(f"❌ Failed to write data: {e}")
+
+
+def get_influxdata():
+    client = InfluxDBClient3(
+    host="http://localhost:8181",
+    token="apiv3_WjoJ989Hy6NDrLIfv_vq1YPs03-gOyTS8igIwsFmpUAFFsj4xSb_mXlKGvd9d-5Rs0fbUvm1Fn6wFCglnx5frA",
+    org="my-org",
+    database="localdb"
+    )
+
+    result = client.query("SELECT * FROM cpu LIMIT 5")
+    for row in result:
+        print(row)
+
+
+
 if __name__ == "__main__":
     # result = query_cpu_utilization_sql()
     # result = write_system_load_data()
-    result = query_cpu_utilization_sql()
-    print(result)
+    # result = query_cpu_utilization_sql()
+    # write_system_load_to_influxdb()
+    # print(result)
+    get_influxdata()
 
