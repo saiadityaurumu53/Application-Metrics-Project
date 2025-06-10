@@ -155,7 +155,8 @@ def get_influxdata():
     database="localdb"
     )
 
-    result = client.query("SELECT * FROM cpu LIMIT 5")
+    # result = client.query("SELECT * FROM cpu LIMIT 5")
+    result = client.query("SELECT usage_user, usage_system FROM cpu WHERE cpu = 'cpu-total' LIMIT 20")
     for row in result:
         print(row)
 

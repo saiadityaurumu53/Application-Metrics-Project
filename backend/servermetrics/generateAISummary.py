@@ -2,7 +2,7 @@ from groq import Groq
 import json
 from io import StringIO
 
-client = Groq(api_key="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")
+client = Groq(api_key="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")
 
 def generate_ai_summary_groq(metrics: list[dict]) -> str:
     # Convert metrics to a clean JSON string for readability

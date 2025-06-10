@@ -140,12 +140,12 @@ const data = {
       icon: Cpu,
       items: [
         {
-          title: "Aditya HP Laptop",
+          title: "Mock System metrics",
           url: "/dashboard/mysystem",
         },
         {
-          title: "Dell Laptop",
-          url: "/dashboard/mysystem/dell",
+          title: "Internal Metrics using Telegraf",
+          url: "/dashboard/mysysteminternal",
         },
       ],
     },

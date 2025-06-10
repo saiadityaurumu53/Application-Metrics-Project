@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 # from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 # from .views import register_user
-from .views import get_system_metrics, write_systemmetrics_influx_data_view
+from .views import get_system_metrics, write_systemmetrics_influx_data_view, load_internal_system
 
 
 urlpatterns = [
@@ -26,5 +26,6 @@ urlpatterns = [
     path('api/', include('authapi.urls')),
     path("api/load-system-data/", get_system_metrics),
     path("write-metrics/", write_systemmetrics_influx_data_view, name="write-metrics"),
+    path("api/load-internal-system/", load_internal_system),
 
 ]
