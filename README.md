@@ -4,7 +4,7 @@ This project is built for the **InfluxDB Hackathon**, providing a full-stack sol
 
 - 🌐 **Next.js (with ShadCN UI + TailwindCSS)** for frontend
 - 🐍 **Django + Django REST Framework** for backend
-- 📊 **InfluxDB Cloud** as the time-series database
+- 📊 **Local InfluxDB 3** time-series database for storing system metrics
 - ⚙️ **Telegraf** for periodic system metrics ingestion
 
 ---
